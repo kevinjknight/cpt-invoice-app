@@ -128,5 +128,14 @@ const App = () => {
           }}
           detectedProcedures={detectedProcedures}
           commonBodyParts={commonBodyParts}
-          xrayBodyPart={xrayBodyPart}
-          setXrayBodyPart={setXrayBodyPart}
+  xrayBodyPart={xrayBodyPart}
+  setXrayBodyPart={setXrayBodyPart}
+  xrayViews={xrayViews}
+  setXrayViews={setXrayViews}
+  xrayViewOptions={xrayViewOptions}
+  mriBodyPart={mriBodyPart}
+  setMriBodyPart={setMriBodyPart}
+  mriContrast={mriContrast}
+  setMriContrast={setMriContrast}
+  handleContinue={() => setStep(3)} 
+/>
