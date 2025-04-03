@@ -139,3 +139,9 @@ const App = () => {
   setMriContrast={setMriContrast}
   handleContinue={() => setStep(3)} 
 />
+      )}
+    </>
+  );
+};
+
+export default App;
