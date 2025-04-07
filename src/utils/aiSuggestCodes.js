@@ -2,7 +2,7 @@ import { OpenAI } from 'openai';
 
 const openai = new OpenAI({
   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true // 🛑 for local/demo only — never in production!
+  dangerouslyAllowBrowser: true // for client-side use only in demos
 });
 
 export const getCPTFromGPT = async (description) => {
@@ -18,17 +18,19 @@ Respond ONLY in this exact JSON format:
 Patient Description: """${description}"""
 `;
 
-  const res = await openai.chat.completions.create({
-   model: 'gpt-3.5-turbo',
-    messages: [{ role: 'user', content: prompt }],
-    temperature: 0.2
-  });
-
   try {
+    const res = await openai.chat.completions.create({
+      model: 'gpt-3.5-turbo',
+      messages: [{ role: 'user', content: prompt }],
+      temperature: 0.2
+    });
+
+    console.log('[GPT Response]', res);
+
     const json = JSON.parse(res.choices[0].message.content);
     return Array.isArray(json) ? json : [];
   } catch (err) {
-    console.error('GPT parsing error:', err);
+    console.error('[GPT ERROR]', err);
     return [];
   }
 };
